@@ -48,7 +48,9 @@ $( "#accordion" ).accordion({
 		function onFaqQueryFailed(sender, args) {
 			console.log('error');
 		}
-	}		
+	}//,  //uncomment this comma to add more parameters/properties to the accordion() method
+	//collapsible: true, //allows the entire accordion to be fully collapsed, though one panel is always open by default
+	//active: false //collapses all panels in the accordion by default (only works if collapsible:true is specified)
 });
 $( "#accordion" ).accordion( "option", "active", 1 );
 $( "#accordion" ).accordion( "refresh" );
