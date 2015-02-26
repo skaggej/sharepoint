@@ -6,3 +6,8 @@ These are some things I've developed for SharePoint that I wanted to document fo
 Sample of a jQuery Accordion pulling from a SharePoint list within a Content Editor Web Part.  
 Get it here:  https://github.com/skaggej/sharepoint/blob/master/jQueryAccordion-SP-FAQs.html.  
 ***
+## jQuery Accordion Policies - SP2013
+<img src="https://github.com/skaggej/sharepoint/blob/master/screenshots/jQueryAccordion-SP-Policies-1.png" />  
+Sample of a jQuery Accordion pulling from a SharePoint library within a Content Editor Web Part.  
+Get it here:  https://github.com/skaggej/sharepoint/blob/master/jQueryAccordion-SP-Policies.html.  
+***
