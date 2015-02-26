@@ -1,0 +1,59 @@
+<html>
+<!--
+/* 
+Usage:
+	1.	Upload this .html file to a SharePoint document library
+	2.  On any web part page, add the Content Editor Web Part
+	3.	Set the URL of the Content Editor Web Part to point to this file (as you defined in step 1 above)
+
+The functionality within this file is dependent upon the SharePoint master page referencing the following:
+	1.	<script src="/Style Library/jquery-1.6.4.min.js" type="text/javascript"></script>
+	2.	<script src="/Style Library/jquery-ui.min.js" type="text/javascript"></script>
+	3.	<SharePoint:CssRegistration Name="<% $SPUrl:~sitecollection/Style Library/jquery-ui.min.css %>" runat="server" />
+	
+The SharePoint site in which this file is used must contain:
+	1.	A list titled "FAQs"
+		a.	Add a column named "Answer" (internal name and display name are both "Answer")
+		b.	Add a column named "Sort Order" (internal name is "Sort_x0020_Order"")
+*/-->
+<body>
+<div class="ui-accordion ui-widget ui-helper-reset" id="accordion" role="tablist">
+</div>
+<script type="text/javascript">
+
+$( "#accordion" ).accordion({
+	create: function( event, ui ) {
+		var faqClientContext = SP.ClientContext.get_current();
+		this.web = faqClientContext.get_web();
+		var faqList = this.web.get_lists().getByTitle('Policies');
+		var faqCamlQuery = new SP.CamlQuery();
+		faqCamlQuery.set_viewXml('<View><Query><OrderBy><FieldRef Name="Sort_x0020_Order" Ascending="True"/></OrderBy></Query><RowLimit>5</RowLimit></View>');
+		var faqListItems = faqList.getItems(faqCamlQuery);
+		faqClientContext.load(faqListItems);
+		faqClientContext.executeQueryAsync(
+			Function.createDelegate(this, onFaqQuerySucceeded),
+			Function.createDelegate(this, onFaqQueryFailed)
+		);
+		function onFaqQuerySucceeded(sender, args) {
+			// populate the Quick Links drop-down list
+			var faqlistItemEnumerator = faqListItems.getEnumerator();
+			while (faqlistItemEnumerator.moveNext()) {
+				var faqListItem = faqlistItemEnumerator.get_current();
+				var dataTitle = faqListItem.get_item('Department');
+				var dataAnswer = faqListItem.get_item('FileLeafRef');
+				$('#accordion').append('<h3>'+dataTitle+'</h3><div><a style="text-decoration: underline;" href="/'+dataAnswer+'">'+dataAnswer+'</a></div>');
+			}
+			$( "#accordion" ).accordion( "refresh" );
+		}
+		function onFaqQueryFailed(sender, args) {
+			console.log('error');
+		}
+	},
+	collapsible: true,
+	active: false
+});
+$( "#accordion" ).accordion( "option", "active", 1 );
+$( "#accordion" ).accordion( "refresh" );
+</script>
+</body>
+</html>
