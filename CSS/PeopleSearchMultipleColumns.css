@@ -1,0 +1,14 @@
+<style type="text/css">
+.ms-srch-people-outerContainer {
+	min-height: 200px;
+	margin: 0 0 0 -10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	float: left;
+	clear: none;
+}
+.ms-srch-hover-standardSize {
+	width: 300px;
+	left: -300px;
+}
+</style>
