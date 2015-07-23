@@ -31,7 +31,7 @@ window.mAdcOW.ItemRenderer = {
                         </div>\
                         <div class="cbs-picture3LinesDataContainer" style="margin-left:0;max-width:none;">\
                             <h2 class="cbs-picture3LinesLine1 ms-accentText2 ms-noWrap"> ' + ctx.CurrentItem.Title + '</h2>\
-                            <div class="cbs-picture3LinesLine2 ms-noWrap"> ' + ctx.CurrentItem._x0062_gp8 + '</div>\
+                            <div class="cbs-picture3LinesLine2 ms-noWrap"> ' + ctx.CurrentItem.PublicationDate + '</div>\
                             <div class="cbs-pictureLine3 ms-textSmall">' + STSHtmlDecode(ctx.CurrentItem.Body) + '</div>\
                         </div>\
                     </div></li>';
