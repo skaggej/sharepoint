@@ -13,25 +13,26 @@ private static void ExecuteCustomCode()
 
 # UpdateSiteLogos
 <pre><code>
-/// <summary>
-        /// This method will set the site logo of each site to match the site logo of the top-level site in the site collection.
-        /// Before running this, ensure that the site logo of the top-level site has been set to the desired logo.
-        /// </summary>
-        private static void UpdateSiteLogos()
-        {
-            string siteLogoUrl = "";
-            Web rootWeb = site.RootWeb;
-            siteLogoUrl = rootWeb.SiteLogoUrl;
-            WebCollection subWebs = rootWeb.Webs;
-            clientContext.Load(subWebs);
-            clientContext.ExecuteQuery();
-            foreach (Web subWeb in subWebs)
-            {
-                Console.WriteLine("Changing " + subWeb.Title + " site logo URL from " + subWeb.SiteLogoUrl + " to " + siteLogoUrl + ".");
-                Console.WriteLine();
-                subWeb.SiteLogoUrl = siteLogoUrl;
-                subWeb.Update();
-                clientContext.ExecuteQuery();
-            }
-        }
+<summary>
+/// This method will set the site logo of each site to match the site logo of the top-level site in the site collection.
+/// Before running this, ensure that the site logo of the top-level site has been set to the desired logo.
+///
+</summary>
+private static void UpdateSiteLogos()
+{
+    string siteLogoUrl = "";
+    Web rootWeb = site.RootWeb;
+    siteLogoUrl = rootWeb.SiteLogoUrl;
+    WebCollection subWebs = rootWeb.Webs;
+    clientContext.Load(subWebs);
+    clientContext.ExecuteQuery();
+    foreach (Web subWeb in subWebs)
+    {
+        Console.WriteLine("Changing " + subWeb.Title + " site logo URL from " + subWeb.SiteLogoUrl + " to " + siteLogoUrl + ".");
+        Console.WriteLine();
+        subWeb.SiteLogoUrl = siteLogoUrl;
+        subWeb.Update();
+        clientContext.ExecuteQuery();
+    }
+}
 </code></pre>
