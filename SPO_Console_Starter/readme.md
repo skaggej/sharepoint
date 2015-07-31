@@ -13,7 +13,7 @@ private static void ExecuteCustomCode()
 </code></pre>
 
 # UpdateSiteLogos
-<pre><code>
+<code>
 <summary>
 /// This method will set the site logo of each site to match the site logo of the top-level site in the site collection.
 /// Before running this, ensure that the site logo of the top-level site has been set to the desired logo.
@@ -35,4 +35,4 @@ private static void UpdateSiteLogos()
         clientContext.ExecuteQuery();
     }
 }
-</code></pre>
+</code>
