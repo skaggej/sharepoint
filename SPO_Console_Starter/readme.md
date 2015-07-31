@@ -4,7 +4,6 @@ This console app has everything you need to get started.  It was built with refe
 
 If you change nothing and simply run it, you'll be prompted for the authentication info for your SPO environment and, once authenticated, the console app will simply output "Hello, SPO!"
 <pre><code>
-/// This method is the starting point of your custom code.
 private static void ExecuteCustomCode() 
 {
     Console.WriteLine("Hello, SPO!"); 
