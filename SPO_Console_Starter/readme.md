@@ -5,6 +5,7 @@ This console app has everything you need to get started.  It was built with refe
 If you change nothing and simply run it, you'll be prompted for the authentication info for your SPO environment and, once authenticated, the console app will simply output "Hello, SPO!"
 
 <pre><code>
+/// This method is the starting point of your custom code.
 private static void ExecuteCustomCode() 
 {
     Console.WriteLine("Hello, SPO!"); 
@@ -16,7 +17,6 @@ private static void ExecuteCustomCode()
 <summary>
 /// This method will set the site logo of each site to match the site logo of the top-level site in the site collection.
 /// Before running this, ensure that the site logo of the top-level site has been set to the desired logo.
-///
 </summary>
 private static void UpdateSiteLogos()
 {
