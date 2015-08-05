@@ -26,7 +26,6 @@ private static void RecursivelyUpdateWebLogo(Web currentWeb)
     Console.WriteLine();
     currentWeb.SiteLogoUrl = siteLogoUrl;
     currentWeb.Update();
-    clientContext.ExecuteQuery();
     WebCollection subWebs = currentWeb.Webs;
     clientContext.Load(subWebs);
     clientContext.ExecuteQuery();
