@@ -15,7 +15,8 @@ namespace SPO_Console_Starter
         private static SecureString password;
         private static string username;
         private static string url;
-        
+        private static string siteLogoUrl = "";
+
         #endregion
 
         static void Main(string[] args)
@@ -31,28 +32,33 @@ namespace SPO_Console_Starter
             Console.WriteLine("Hello, SPO!");
             Console.WriteLine();
 
-            //UpdateSiteLogos();
+            UpdateWebLogos();
         }
 
         /// <summary>
         /// This method will set the site logo of each site to match the site logo of the top-level site in the site collection.
         /// Before running this, ensure that the site logo of the top-level site has been set to the desired logo.
         /// </summary>
-        private static void UpdateSiteLogos()
+        private static void UpdateWebLogos()
         {
-            string siteLogoUrl = "";
             Web rootWeb = site.RootWeb;
             siteLogoUrl = rootWeb.SiteLogoUrl;
-            WebCollection subWebs = rootWeb.Webs;
+            RecursivelyUpdateWebLogo(rootWeb);
+        }
+
+        private static void RecursivelyUpdateWebLogo(Web currentWeb)
+        {
+            Console.WriteLine("Changing " + currentWeb.Title + " site logo URL from " + currentWeb.SiteLogoUrl + " to " + siteLogoUrl + ".");
+            Console.WriteLine();
+            currentWeb.SiteLogoUrl = siteLogoUrl;
+            currentWeb.Update();
+            clientContext.ExecuteQuery();
+            WebCollection subWebs = currentWeb.Webs;
             clientContext.Load(subWebs);
             clientContext.ExecuteQuery();
             foreach (Web subWeb in subWebs)
             {
-                Console.WriteLine("Changing " + subWeb.Title + " site logo URL from " + subWeb.SiteLogoUrl + " to " + siteLogoUrl + ".");
-                Console.WriteLine();
-                subWeb.SiteLogoUrl = siteLogoUrl;
-                subWeb.Update();
-                clientContext.ExecuteQuery();
+                RecursivelyUpdateWebLogo(subWeb);
             }
         }
 
