@@ -52,7 +52,6 @@ namespace SPO_Console_Starter
             Console.WriteLine();
             currentWeb.SiteLogoUrl = siteLogoUrl;
             currentWeb.Update();
-            clientContext.ExecuteQuery();
             WebCollection subWebs = currentWeb.Webs;
             clientContext.Load(subWebs);
             clientContext.ExecuteQuery();
