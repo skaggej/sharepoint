@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <CustomAction Id="SiteActionsAdminHomeLink"
+                Location="Microsoft.SharePoint.StandardMenu"
+                GroupId="SiteActions"
+                Title="Admin"
+                Description="Access the Administrative pages for this web site."
+                Sequence="1000"
+                ImageUrl="/WebGraphics/Iconic Small.jpg">
+    <UrlAction Url="/AdminPages/AdminHome.aspx"/>
+  </CustomAction>
+</Elements>

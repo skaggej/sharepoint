@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/" >
+  <Module Name="WP_ApplyMasterPage" List="113" Url="_catalogs/wp">
+    <File Path="WP_ApplyMasterPage\WP_ApplyMasterPage.webpart" Url="WP_ApplyMasterPage.webpart" Type="GhostableInLibrary">
+      <Property Name="Group" Value="SharePointNerd" />
+    </File>
+  </Module>
+</Elements>

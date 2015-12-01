@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="SharePointNerd.WebParts.WP_ApplyMasterPage, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">Apply Master Page</property>
+        <property name="Description" type="string">Use this web part to force all SPWebs in this SPSite to reference the same master page as the top-level SPWeb.</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>
