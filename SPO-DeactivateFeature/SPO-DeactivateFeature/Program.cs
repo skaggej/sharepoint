@@ -8,7 +8,8 @@ namespace SPO_DeactivateFeature
     {
         #region constants
 
-        private const string spFeatureMinimalDownloadStrategy = "87294c72-f260-42f3-a41b-981a2ffce37a";  // Web-scoped 'Minimal Download Strategy' feature
+        private const string spFeatureWebMinimalDownloadStrategy = "87294c72-f260-42f3-a41b-981a2ffce37a";  // Web-scoped 'Minimal Download Strategy' feature
+        private const string spFeatureWebMobileBrowserView = "d95c97f3-e528-4da2-ae9f-32b3535fbb59";  // Web-scoped 'Mobile Browser View' feature
 
         #endregion
 
@@ -26,25 +27,30 @@ namespace SPO_DeactivateFeature
         static void Main(string[] args)
         {
             ConnectToSite();
-            Console.WriteLine("Looking for webs in which the 'Minimal Download Strategy' feature has been activated...");
-            DeactivateMDS(rootWeb);
-            Console.WriteLine("Done!");
-        }
+            //Console.WriteLine("Deactivating 'Minimal Download Strategy'\n");
+            //DeactivateFeature(rootWeb, spFeatureWebMinimalDownloadStrategy);
+            Console.WriteLine("Deactivating 'Mobile Browser View' feature...\n");
+            DeactivateFeatureWeb(rootWeb, new Guid(spFeatureWebMobileBrowserView));
+            Console.WriteLine("Done! Press enter to exit...");
+            Console.ReadLine();
+        }        
 
-        private static void DeactivateMDS(Web currentWeb)
+        private static void DeactivateFeatureWeb(Web currentWeb, Guid featureGuid)
         {
-            Guid minimalDownloadStrategyFeatureGuid = new Guid(spFeatureMinimalDownloadStrategy);
-            if (currentWeb.IsFeatureActive(minimalDownloadStrategyFeatureGuid))
+            Feature currentFeature = currentWeb.Features.GetById(featureGuid);
+            clientContext.Load(currentFeature, f =>f.DisplayName);
+            clientContext.ExecuteQuery();
+            if (currentWeb.IsFeatureActive(featureGuid))
             {
-                Console.WriteLine("Deactivating web-scoped 'Minimal Download Strategy' feature for web at:  " + currentWeb.Url);
-                currentWeb.DeactivateFeature(minimalDownloadStrategyFeatureGuid);
+                Console.WriteLine("Deactivating web-scoped '" + currentFeature.DisplayName + "' feature for web at:\n" + currentWeb.Url + "\n");
+                currentWeb.DeactivateFeature(featureGuid);
             }
             WebCollection webs = currentWeb.Webs;
             clientContext.Load(webs);
             clientContext.ExecuteQuery();
             foreach(Web web in webs)
             {
-                DeactivateMDS(web);
+                DeactivateFeatureWeb(web, featureGuid);
             }
         }
 
@@ -70,7 +76,7 @@ namespace SPO_DeactivateFeature
             clientContext.Load(rootWeb);
             clientContext.ExecuteQuery();
             Console.WriteLine("");
-            Console.WriteLine("Connected to the Site Collection successfully...");
+            Console.WriteLine("Connected to the Site Collection successfully...\n");
         }
 
         public static SecureString GetPassword()
