@@ -1,4 +1,7 @@
 # SharePoint Solutions
+
+[![Join the chat at https://gitter.im/skaggej/sharepoint](https://badges.gitter.im/skaggej/sharepoint.svg)](https://gitter.im/skaggej/sharepoint?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+***
 These are some things I've developed for SharePoint that I wanted to document for future reference.
 ***  
 ## jQuery Accordion FAQ - SP2013
