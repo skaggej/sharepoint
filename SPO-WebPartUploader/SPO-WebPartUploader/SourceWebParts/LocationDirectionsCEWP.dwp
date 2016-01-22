@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebPart xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/WebPart/v2">
+  <Title>Location Directions</Title>
+  <FrameType>Default</FrameType>
+  <Description>Allows authors to enter rich text content.</Description>
+  <IsIncluded>true</IsIncluded>
+  <ZoneID>MainRow1Center</ZoneID>
+  <PartOrder>0</PartOrder>
+  <FrameState>Normal</FrameState>
+  <Height />
+  <Width />
+  <AllowRemove>true</AllowRemove>
+  <AllowZoneChange>true</AllowZoneChange>
+  <AllowMinimize>true</AllowMinimize>
+  <AllowConnect>true</AllowConnect>
+  <AllowEdit>true</AllowEdit>
+  <AllowHide>true</AllowHide>
+  <IsVisible>true</IsVisible>
+  <DetailLink />
+  <HelpLink />
+  <HelpMode>Modeless</HelpMode>
+  <Dir>Default</Dir>
+  <PartImageSmall />
+  <MissingAssembly>Cannot import this Web Part.</MissingAssembly>
+  <PartImageLarge>/_layouts/15/images/mscontl.gif</PartImageLarge>
+  <IsIncludedFilter />
+  <Assembly>Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
+  <TypeName>Microsoft.SharePoint.WebPartPages.ContentEditorWebPart</TypeName>
+  <ContentLink xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
+  <Content xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor">
+  <![CDATA[
+    <script src="https://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&amp;s=1" type="text/javascript"></script>
+    <script src="https://ecn.dev.virtualearth.net/mapcontrol/v7.0/7.0.20141118162111.86/js/en-us/veapicore.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      var map = null;
+      var trialKey = '';
+      var query = ''; 
+		  function execGetAddress() {
+			  var siteUrl = _spPageContextInfo.siteAbsoluteUrl;
+			  var executor = new SP.RequestExecutor(siteUrl);
+			  executor.executeAsync(
+				  {
+					  url:
+					  siteUrl +
+					  "/_api/web/lists/getbytitle('Configuration')/items?$select=Title,ConfigValue&$filter=Title eq 'Location-Address' or Title eq 'location-key' ",
+					  method: "GET",
+					  headers: { "Accept": "application/json; odata=verbose" },
+					  success: onAddressSuccess,
+					  error: function (xhr, textStatus, errorThrown) {alert(errorThrown);	}
+				  }
+			  );
+		  }
+		  function onAddressSuccess(data) {
+			  var jsonObject = JSON.parse(data.body);
+			  if (Object.keys(jsonObject.d.results).length > 0) {
+				  for (var j = 0; j < jsonObject.d.results.length; j++) {
+					  if (jsonObject.d.results[j].Title.toLowerCase() == 'location-key') {
+						  trialKey = jsonObject.d.results[0].ConfigValue;
+					  }
+            if (jsonObject.d.results[j].Title.toLowerCase() == 'location-address') {
+						  query = jsonObject.d.results[1].ConfigValue;
+					  }
+				  }	
+				  getMap();
+			  }
+		  }		  
+      function getMap() {
+          map = new Microsoft.Maps.Map(document.getElementById('fuseMap'), { credentials: trialKey });
+          map.getCredentials(callSearchService);
+      }
+      function callSearchService(credentials) {
+          var searchRequest = 'https://dev.virtualearth.net/REST/v1/Locations/' + query + '?output=json&jsonp=searchServiceCallback&key=' + credentials;
+          var mapscript = document.createElement('script');
+          mapscript.type = 'text/javascript';
+          mapscript.src = searchRequest;
+          document.getElementById('fuseMap').appendChild(mapscript);
+      }
+      function searchServiceCallback(result) {
+        if (result &&
+        result.resourceSets &&
+        result.resourceSets.length > 0 &&
+        result.resourceSets[0].resources &&
+        result.resourceSets[0].resources.length > 0) {
+          var bbox = result.resourceSets[0].resources[0].bbox;
+          var viewBoundaries = Microsoft.Maps.LocationRect.fromLocations(new Microsoft.Maps.Location(bbox[0], bbox[1]), new Microsoft.Maps.Location(bbox[2], bbox[3]));
+          map.setView({ bounds: viewBoundaries });
+          var location = new Microsoft.Maps.Location(result.resourceSets[0].resources[0].point.coordinates[0], result.resourceSets[0].resources[0].point.coordinates[1]);
+          var pushpin = new Microsoft.Maps.Pushpin(location);
+          map.entities.push(pushpin);
+          mapClickEventHandler();
+        }
+        else {
+          if (typeof (response) == 'undefined' || response == null) {
+              //alert("Invalid credentials or no response");
+          }                      
+          else {                      
+              // alert("No results for the query");
+          }                  
+        }
+      }
+      function mapClickEventHandler() {
+        click=Microsoft.Maps.Events.addHandler(map, 'click',redirectToDirections);
+      }
+		  redirectToDirections = function (e) {
+		    window.location = 'https://www.bing.com/maps/default.aspx?rtp=~adr.' + query;		
+      }
+    _spBodyOnLoadFunctionNames.push("execGetAddress");
+    </script>
+    <div id="fuseMap" style="width: 300px; height: 200px;"></div>
+  ]]>
+  </Content>
+  <PartStorage xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
+</WebPart>

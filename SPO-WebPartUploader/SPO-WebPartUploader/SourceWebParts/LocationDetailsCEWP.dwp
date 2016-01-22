@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebPart xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/WebPart/v2">
+	<Title>Location Details</Title>
+	<FrameType>Default</FrameType>
+	<Description>Allows authors to enter rich text content.</Description>
+	<IsIncluded>true</IsIncluded>
+	<ZoneID>MainRow1Left</ZoneID>
+	<PartOrder>0</PartOrder>
+	<FrameState>Normal</FrameState>
+	<Height />
+	<Width />
+	<AllowRemove>true</AllowRemove>
+	<AllowZoneChange>true</AllowZoneChange>
+	<AllowMinimize>true</AllowMinimize>
+	<AllowConnect>true</AllowConnect>
+	<AllowEdit>true</AllowEdit>
+	<AllowHide>true</AllowHide>
+	<IsVisible>true</IsVisible>
+	<DetailLink />
+	<HelpLink />
+	<HelpMode>Modeless</HelpMode>
+	<Dir>Default</Dir>
+	<PartImageSmall />
+	<MissingAssembly>Cannot import this Web Part.</MissingAssembly>
+	<PartImageLarge>/_layouts/15/images/mscontl.gif</PartImageLarge>
+	<IsIncludedFilter />
+	<Assembly>Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
+	<TypeName>Microsoft.SharePoint.WebPartPages.ContentEditorWebPart</TypeName>
+	<ContentLink xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
+	<Content xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor">
+		<![CDATA[<div class="fuse-location-details-wrapper"> 
+<span class="ms-rteStyle-References"><span class="ms-rteFontSize-2">
+<h3> 1221 South MoPac Expressway <br/>Three Barton Skyway, Suite 350<br/> Austin, TX 78746 </h3>
+<p><strong>Tel: </strong>512:123.4567<br/><strong>Fax: </strong>514.1235678<br/><strong>Receptionist: </strong>Margaret Wilson, ext 100<br/><strong>Facilities: </strong>Mike David ext 200 </p>
+<p><strong>WIFI code: </strong> Austin<br/><strong>WIFI password: </strong> 12345abcde​ </p> 
+<p><a href="#">Office floor plan</a></p></span></span></div>]]>
+	</Content>
+	<PartStorage xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
+</WebPart>

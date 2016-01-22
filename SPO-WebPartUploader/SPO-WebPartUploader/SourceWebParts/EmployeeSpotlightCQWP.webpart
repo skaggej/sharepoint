@@ -1,0 +1,136 @@
+﻿<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="Microsoft.SharePoint.Publishing.WebControls.ContentByQueryWebPart, Microsoft.SharePoint.Publishing, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+      <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Filter1ChainingOperator" type="Microsoft.SharePoint.Publishing.WebControls.ContentByQueryWebPart+FilterChainingOperator, Microsoft.SharePoint.Publishing, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">Or</property>
+        <property name="FilterOperator1" type="Microsoft.SharePoint.Publishing.WebControls.ContentByQueryWebPart+FilterFieldQueryOperator, Microsoft.SharePoint.Publishing, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">Eq</property>
+        <property name="Direction" type="direction">NotSet</property>
+        <property name="FilterOperator3" type="Microsoft.SharePoint.Publishing.WebControls.ContentByQueryWebPart+FilterFieldQueryOperator, Microsoft.SharePoint.Publishing, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">Eq</property>
+        <property name="GroupByDirection" type="Microsoft.SharePoint.Publishing.WebControls.ContentByQueryWebPart+SortDirection, Microsoft.SharePoint.Publishing, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">Desc</property>
+        <property name="DataSourceID" type="string" />
+        <property name="ChromeState" type="chromestate">Normal</property>
+        <property name="SystemViewFields" type="string" />
+        <property name="ListName" type="string">Employee Spotlight</property>
+        <property name="FilterDisplayValue3" type="string" />
+        <property name="FilterDisplayValue2" type="string" />
+        <property name="FilterDisplayValue1" type="string" />
+        <property name="FilterField1" type="string" />
+        <property name="Description" type="string">Displays a dynamic view of content from your site..</property>
+        <property name="DataColumnRenames" type="string" />
+        <property name="MissingAssembly" type="string">Cannot import this Web Part.</property>
+        <property name="PageSize" type="int">-1</property>
+        <property name="ViewContentTypeId" type="string" />
+        <property name="ParameterBindings" type="string" />
+        <property name="HelpUrl" type="string" />
+        <property name="AdditionalFilterFields" type="string" />
+        <property name="DataMappingViewFields" type="string">{94f89715-e097-4e8b-ba79-ea02aa8b7adb},Lookup;{b9e6f3ae-5632-4b13-b636-9d1a2bd67120},Computed;{fa564e0f-0c70-4ab9-b863-0177e6ddd247},Text;{39bd01f4-b85e-42e9-940b-97756121684d},Note;</property>
+        <property name="Title" type="string">Employee Spotlight</property>
+        <property name="FeedDescription" type="string" />
+        <property name="UseCache" type="bool">True</property>
+        <property name="XslLink" type="string" null="true" />
+        <property name="AutoRefresh" type="bool">False</property>
+        <property name="Filter1IsCustomValue" type="bool">False</property>
+        <property name="FireInitialRow" type="bool">True</property>
+        <property name="FilterValue3" type="string" />
+        <property name="SortByFieldType" type="string">DateTime</property>
+        <property name="ManualRefresh" type="bool">False</property>
+        <property name="HelpMode" type="helpmode">Modeless</property>
+        <property name="AllowConnect" type="bool">True</property>
+        <property name="ItemStyle" type="string">Fuse-Spotlight</property>
+        <property name="SampleData" type="string">
+          &lt;dsQueryResponse&gt;
+          &lt;Rows&gt;
+          &lt;Row Title="Item 1" LinkUrl="http://Item1" Group="Group Header" __begincolumn="True" __begingroup="True" /&gt;
+          &lt;Row Title="Item 2" LinkUrl="http://Item2" __begincolumn="False" __begingroup="False" /&gt;
+          &lt;Row Title="Item 3" LinkUrl="http://Item3" __begincolumn="False" __begingroup="False" /&gt;
+          &lt;/Rows&gt;
+          &lt;/dsQueryResponse&gt;
+        </property>
+        <property name="FilterIncludeChildren2" type="bool">False</property>
+        <property name="XmlDefinitionLink" type="string" />
+        <property name="ServerTemplate" type="string">851</property>
+        <property name="TitleUrl" type="string">~sitecollection/Lists/Employee Spotlight</property>
+        <property name="CommonViewFields" type="string" />
+        <property name="QueryOverride" type="string" />
+        <property name="DataSourcesString" type="string" />
+        <property name="DisplayName" type="string" />
+        <property name="ListGuid" type="string" />
+        <property name="DataFields" type="string" />
+        <property name="ShowWithSampleData" type="bool">False</property>
+        <property name="GroupByFieldType" type="string" />
+        <property name="Default" type="string" />
+        <property name="ViewFlags" type="Microsoft.SharePoint.SPViewFlags, Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">None</property>
+        <property name="ContentTypeBeginsWithId" type="string" />
+        <property name="AllowHide" type="bool">True</property>
+        <property name="FeedEnabled" type="bool">False</property>
+        <property name="SortBy" type="string">Created</property>
+        <property name="FilterByContextTerm" type="bool">False</property>
+        <property name="TitleIconImageUrl" type="string" />
+        <property name="PlayMediaInBrowser" type="bool">True</property>
+        <property name="ViewFlag" type="string">0</property>
+        <property name="Xsl" type="string">&lt;xsl:stylesheet xmlns:x="http://www.w3.org/2001/XMLSchema" version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:cmswrt="http://schemas.microsoft.com/WebPart/v3/Publishing/runtime" exclude-result-prefixes="xsl cmswrt x" &gt; &lt;xsl:import href="~sitecollection/Style Library/XSL Style Sheets/FuseSpotlight_Header.xsl" /&gt; &lt;xsl:import href="~sitecollection/Style Library/XSL Style Sheets/FuseSpotlight_ItemStyle.xsl" /&gt; &lt;xsl:import href="~sitecollection/Style Library/XSL Style Sheets/FuseSpotlight_ContentQueryMain.xsl" /&gt; &lt;/xsl:stylesheet&gt;</property>
+        <property name="FilterField2" type="string" />
+        <property name="ChromeType" type="chrometype">TitleOnly</property>
+        <property name="CacheXslTimeOut" type="int">86400</property>
+        <property name="AdditionalGroupAndSortFields" type="string" />
+        <property name="UseSQLDataSourcePaging" type="bool">True</property>
+        <property name="Height" type="string" />
+        <property name="DataMappings" type="string">Description:{39bd01f4-b85e-42e9-940b-97756121684d},SpotlightDescription,Note;|ImageUrl:{b9e6f3ae-5632-4b13-b636-9d1a2bd67120},EncodedAbsThumbnailUrl,Computed;|Title:{fa564e0f-0c70-4ab9-b863-0177e6ddd247},Title,Text;|LinkUrl:{94f89715-e097-4e8b-ba79-ea02aa8b7adb},FileRef,Lookup;|</property>
+        <property name="ListUrl" type="string" null="true" />
+        <property name="ShowUntargetedItems" type="bool">False</property>
+        <property name="AllowMinimize" type="bool">True</property>
+        <property name="GroupBy" type="string" />
+        <property name="FilterIncludeChildren1" type="bool">False</property>
+        <property name="BaseType" type="string" />
+        <property name="MainXslLink" type="string" />
+        <property name="AsyncRefresh" type="bool">False</property>
+        <property name="FilterValue1" type="string" />
+        <property name="FilterValue2" type="string" />
+        <property name="InitialAsyncDataFetch" type="bool">False</property>
+        <property name="AutoRefreshInterval" type="int">60</property>
+        <property name="Filter3IsCustomValue" type="bool">False</property>
+        <property name="GroupStyle" type="string">DefaultHeader</property>
+        <property name="AllowZoneChange" type="bool">True</property>
+        <property name="FilterIncludeChildren3" type="bool">False</property>
+        <property name="EnableOriginalValue" type="bool">False</property>
+        <property name="ItemLimit" type="int">1</property>
+        <property name="FilterType1" type="string" />
+        <property name="UseCopyUtil" type="bool">False</property>
+        <property name="FilterType3" type="string" />
+        <property name="FilterType2" type="string" />
+        <property name="FilterOperator2" type="Microsoft.SharePoint.Publishing.WebControls.ContentByQueryWebPart+FilterFieldQueryOperator, Microsoft.SharePoint.Publishing, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">Eq</property>
+        <property name="PageType" type="Microsoft.SharePoint.PAGETYPE, Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">PAGE_NORMALVIEW</property>
+        <property name="FilterByAudience" type="bool">False</property>
+        <property name="ItemXslLink" type="string">~sitecollection/Style Library/XSL Style Sheets/FuseSpotlight_ItemStyle.xsl</property>
+        <property name="Hidden" type="bool">False</property>
+        <property name="WebUrl" type="string">~sitecollection/</property>
+        <property name="HeaderXslLink" type="string">~sitecollection/Style Library/XSL Style Sheets/FuseSpotlight_Header.xsl</property>
+        <property name="CacheXslStorage" type="bool">True</property>
+        <property name="ListsOverride" type="string" />
+        <property name="SortByDirection" type="Microsoft.SharePoint.Publishing.WebControls.ContentByQueryWebPart+SortDirection, Microsoft.SharePoint.Publishing, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">Desc</property>
+        <property name="Filter2IsCustomValue" type="bool">False</property>
+        <property name="AllowEdit" type="bool">True</property>
+        <property name="FeedTitle" type="string" />
+        <property name="FilterField3" type="string" />
+        <property name="MediaPlayerStyleSource" type="string" null="true" />
+        <property name="DisplayColumns" type="int">1</property>
+        <property name="Filter2ChainingOperator" type="Microsoft.SharePoint.Publishing.WebControls.ContentByQueryWebPart+FilterChainingOperator, Microsoft.SharePoint.Publishing, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">Or</property>
+        <property name="XmlDefinition" type="string" />
+        <property name="WebsOverride" type="string" />
+        <property name="AllowClose" type="bool">True</property>
+        <property name="ContentTypeName" type="string">Spotlight</property>
+        <property name="ListId" type="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">00000000-0000-0000-0000-000000000000</property>
+        <property name="ExportMode" type="exportmode">All</property>
+        <property name="NoDefaultStyle" type="string" />
+        <property name="ViewFieldsOverride" type="string" />
+        <property name="CatalogIconImageUrl" type="string" />
+        <property name="ListDisplayName" type="string" null="true" />
+        <property name="Width" type="string" />
+      </properties>
+    </data>
+  </webPart>
+</webParts>

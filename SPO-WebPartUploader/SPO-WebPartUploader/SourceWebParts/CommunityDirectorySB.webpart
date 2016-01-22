@@ -1,0 +1,62 @@
+﻿<webParts>
+	<webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+		<metaData>
+			<type name="Microsoft.Office.Server.Search.WebControls.SearchBoxScriptWebPart, Microsoft.Office.Server.Search, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+			<importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+		</metaData>
+		<data>
+			<properties>
+				<property name="ChromeType" type="chrometype">TitleOnly</property>
+				<property name="QuerySuggestionMinimumPrefixLength" type="int">2</property>
+				<property name="Height" type="string" />
+				<property name="AdvancedSearchPageAddress" type="string"></property>
+				<property name="AllowEmptySearch" type="bool">False</property>
+				<property name="AllowZoneChange" type="bool">True</property>
+				<property name="AllowEdit" type="bool">True</property>
+				<property name="ShowPreferencesLink" type="bool">False</property>
+				<property name="Hidden" type="bool">False</property>
+				<property name="UpdatePageTitle" type="bool">False</property>
+				<property name="Width" type="string" />
+				<property name="Direction" type="direction">NotSet</property>
+				<property name="UseSharedSettings" type="bool">True</property>
+				<property name="EmitStyleReference" type="bool">True</property>
+				<property name="AllowConnect" type="bool">True</property>
+				<property name="AllowMinimize" type="bool">True</property>
+				<property name="AllowClose" type="bool">True</property>
+				<property name="HelpMode" type="helpmode">Modeless</property>
+				<property name="ShowNavigation" type="bool">False</property>
+				<property name="ExportMode" type="exportmode">All</property>
+				<property name="QuerySuggestionsSourceID" type="string" null="true" />
+				<property name="InitialPrompt" type="string" null="true" />
+				<property name="QuerySuggestionCount" type="int">5</property>
+				<property name="ShowPeopleNameSuggestions" type="bool">True</property>
+				<property name="ChromeState" type="chromestate">Normal</property>
+				<property name="AllowHide" type="bool">True</property>
+				<property name="StatesJson" type="string">{}</property>
+				<property name="RenderTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/Search/Control_SearchBox.js</property>
+				<property name="Title" type="string">Search Communities</property>
+				<property name="Description" type="string">Displays a search box that allows users to search for information.</property>
+				<property name="ServerInitialRender" type="bool">False</property>
+				<property name="CatalogIconImageUrl" type="string" />
+				<property name="MsBeforeShowingProgress" type="int">500</property>
+				<property name="PageTitlePrefix" type="string" />
+				<property name="ServerIncludeScriptsJson" type="string">null</property>
+				<property name="TitleUrl" type="string">/search/Pages/conversationresults.aspx</property>
+				<property name="AlternateErrorMessage" type="string" null="true" />
+				<property name="ShowQuerySuggestions" type="bool">True</property>
+				<property name="DefaultDropdownNodeId" type="int">0</property>
+				<property name="SetFocusOnPageLoad" type="bool">True</property>
+				<property name="ResultsPageAddress" type="string">/search/Pages/conversationresults.aspx?k={contexturl}</property>
+				<property name="ShowAdvancedLink" type="bool">False</property>
+				<property name="PersonalResultCount" type="int">3</property>
+				<property name="TryInplaceQuery" type="bool">False</property>
+				<property name="MaintainQueryState" type="bool">False</property>
+				<property name="HelpUrl" type="string" />
+				<property name="QuerySuggestionCompletionInterval" type="int">100</property>
+				<property name="QueryGroupNamesJson" type="string">["Default"]</property>
+				<property name="TitleIconImageUrl" type="string" />
+				<property name="MissingAssembly" type="string">Cannot import this Web Part.</property>
+			</properties>
+		</data>
+	</webPart>
+</webParts>
