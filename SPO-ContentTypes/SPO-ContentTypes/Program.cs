@@ -7,9 +7,6 @@ namespace SPO_ContentTypes
 {
     class Program
     {
-        #region constants
-        #endregion
-
         #region variables
 
         private static ClientContext clientContext;
@@ -19,6 +16,7 @@ namespace SPO_ContentTypes
         private static string userName;
         private static string url;
         private static string outputFilePath;
+        private static StreamWriter outputStream;
 
         #endregion
 
@@ -32,35 +30,31 @@ namespace SPO_ContentTypes
             else
             {
                 outputFilePath = args[0];
+                outputStream = new StreamWriter(outputFilePath, true);
                 ConnectToSite();
                 ShowContentTypesInEachList();
-                Console.WriteLine("Done! Press enter to exit...");
+                LogOutput("Done! Press enter to exit...");
+                outputStream.Close();
                 Console.ReadLine();
             }
         }
 
         private static void ShowContentTypesInEachList()
         {
-            StreamWriter outputStreamWrite = new StreamWriter(outputFilePath, true);
             ListCollection lists = rootWeb.Lists;
             clientContext.Load(lists);
             clientContext.ExecuteQuery();
             foreach(List currentList in lists)
             {
-                Console.WriteLine("Content Types in List: " + currentList.Title);
-                outputStreamWrite.WriteLine("Content Types in List: " + currentList.Title);
+                LogOutput("Content Types in List: " + currentList.Title);
                 ContentTypeCollection listContentTypes = currentList.ContentTypes;
                 clientContext.Load(listContentTypes);
                 clientContext.ExecuteQuery();
-                Console.ForegroundColor = ConsoleColor.Green;
                 foreach(ContentType currentContentType in listContentTypes)
                 {
-                    Console.WriteLine(currentContentType.Name);
-                    outputStreamWrite.WriteLine(currentContentType.Name);
+                    LogOutput(currentContentType.Name);
                 }
-                Console.ResetColor();
-                Console.WriteLine();
-                outputStreamWrite.WriteLine();
+                LogOutput("");
             }
         }
 
@@ -85,11 +79,10 @@ namespace SPO_ContentTypes
             rootWeb = site.RootWeb;
             clientContext.Load(rootWeb);
             clientContext.ExecuteQuery();
-            Console.WriteLine("");
-            Console.WriteLine("Connected to the Site Collection successfully...\n");
+            LogOutput("Connected to the Site Collection successfully...\n");
         }
 
-        public static SecureString GetPassword()
+        private static SecureString GetPassword()
         {
             SecureString pwd = new SecureString();
             while (true)
@@ -116,13 +109,19 @@ namespace SPO_ContentTypes
             return pwd;
         }
 
-        static void DisplayUsage()
+        private static void DisplayUsage()
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Please specify the name of an output path/file");
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Example: SPO-ContentTypes.exe output.txt");
             Console.ResetColor();
+        }
+
+        private static void LogOutput(string message)
+        {
+            Console.WriteLine(message);
+            outputStream.WriteLine(message);
         }
 
         #endregion

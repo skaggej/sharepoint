@@ -24,12 +24,14 @@ namespace SPO_WebPartUploader
         private static string url;
         private static string outputFilePath;
         private static string siteRelativeUrl;
+        private static StreamWriter outputStream;
+        private static string webPartPrefix;
 
         #endregion
 
         static void Main(string[] args)
         {
-            if (args.Length < 1)
+            if (args.Length < 2)
             {
                 DisplayUsage();
                 return;
@@ -37,9 +39,12 @@ namespace SPO_WebPartUploader
             else
             {
                 outputFilePath = args[0];
+                webPartPrefix = args[1];
+                outputStream = new StreamWriter(outputFilePath, true);
                 ConnectToSite();
                 UploadWebParts();
-                Console.WriteLine("Done! Press enter to exit...");
+                LogOutput("Done! Press enter to exit...");
+                outputStream.Close();
                 Console.ReadLine();
             }
         }
@@ -52,24 +57,24 @@ namespace SPO_WebPartUploader
             clientContext.ExecuteQuery();
             //Upload the web parts to the Web Part Gallery
             string[] webPartFiles = Directory.GetFiles(@"..\..\SourceWebParts");
-            Console.WriteLine("Uploading Fuse Web Parts...");
+            LogOutput("Uploading Web Parts...");
             foreach (string webPartFile in webPartFiles)
             {
                 string newWebPartFile = webPartFile;
-                if (!webPartFile.Contains("Fuse"))
+                if (!webPartFile.Contains(webPartPrefix))
                 {
-                    newWebPartFile = webPartFile.Replace(@"..\..\SourceWebParts\", @"..\..\OutputWebParts\Fuse-");
+                    newWebPartFile = webPartFile.Replace(@"..\..\SourceWebParts\", @"..\..\OutputWebParts\" + webPartPrefix + "-");
                 }
                 string webPartUrl = newWebPartFile.Replace(@"..\..\OutputWebParts\", "");
                 using (FileStream fs = System.IO.File.OpenRead(webPartFile))
                 {
                     //Read in full webPartFile
-                    Console.WriteLine("Reading from " + webPartFile);
+                    LogOutput("Reading from " + webPartFile);
                     StreamReader sr = new StreamReader(fs);
                     String outFile = sr.ReadToEnd();
                     sr.Close();
-                    Console.WriteLine("Writing to " + newWebPartFile);
-                    //Replace the "~sitecollection/" token in file with current relative url and create a new file with a prefix of "Fuse-"
+                    LogOutput("Writing to " + newWebPartFile);
+                    //Replace the "~sitecollection/" token in file with current relative url and create a new file with the webPartPrefix
                     outFile = outFile.Replace(siteCollectionToken, siteRelativeUrl);
                     FileStream fsWrite = System.IO.File.OpenWrite(newWebPartFile);
                     StreamWriter sw = new StreamWriter(fsWrite);
@@ -90,18 +95,18 @@ namespace SPO_WebPartUploader
                 //Delete the file
                 System.IO.File.Delete(newWebPartFile);
             }
-            //Set the Group property of each web part to "Fuse Web Parts"
+            //Set the Group property of each web part to "webPartPrefix Web Parts"
             List webPartGallery = clientContext.Web.GetListByTitle("Web Part Gallery");
             CamlQuery camlQuery = new CamlQuery();
-            camlQuery.ViewXml = "<View><Query><Where><Contains><FieldRef Name='FileLeafRef'/><Value Type='Text'>Fuse</Value></Contains></Where></Query></View>";
-            ListItemCollection fuseWebParts = webPartGallery.GetItems(camlQuery);
-            clientContext.Load(fuseWebParts);
+            camlQuery.ViewXml = "<View><Query><Where><Contains><FieldRef Name='FileLeafRef'/><Value Type='Text'>" + webPartPrefix + "</Value></Contains></Where></Query></View>";
+            ListItemCollection myWebParts = webPartGallery.GetItems(camlQuery);
+            clientContext.Load(myWebParts);
             clientContext.ExecuteQuery();
-            Console.WriteLine("Setting the 'Group' of each new web part to 'Fuse Web Parts'");
-            foreach (ListItem fuseWebPart in fuseWebParts)
+            LogOutput("Setting the 'Group' of each new web part to '" + webPartPrefix + " Web Parts'");
+            foreach (ListItem myWebPart in myWebParts)
             {
-                fuseWebPart["Group"] = "Fuse Web Parts";
-                fuseWebPart.Update();
+                myWebPart["Group"] = webPartPrefix + " Web Parts";
+                myWebPart.Update();
                 clientContext.ExecuteQuery();
             }
         }
@@ -131,7 +136,7 @@ namespace SPO_WebPartUploader
             Console.WriteLine("Connected to the Site Collection successfully...\n");
         }
 
-        public static SecureString GetPassword()
+        private static SecureString GetPassword()
         {
             SecureString pwd = new SecureString();
             while (true)
@@ -158,13 +163,19 @@ namespace SPO_WebPartUploader
             return pwd;
         }
 
-        static void DisplayUsage()
+        private static void DisplayUsage()
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Please specify the name of an output path/file");
+            Console.WriteLine("Please specify the name of an output path/file and web part prefix");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Example: SPO-WebPartUploader.exe output.txt");
+            Console.WriteLine("Example: SPO-WebPartUploader.exe output.txt MyWebPartPrefix");
             Console.ResetColor();
+        }
+
+        private static void LogOutput(string message)
+        {
+            Console.WriteLine(message);
+            outputStream.WriteLine(message);
         }
 
         #endregion
