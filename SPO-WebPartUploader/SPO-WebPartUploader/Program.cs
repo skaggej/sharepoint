@@ -23,6 +23,7 @@ namespace SPO_WebPartUploader
         private static string userName;
         private static string url;
         private static string outputFilePath;
+        private static string siteFullUrl;
         private static string siteRelativeUrl;
         private static StreamWriter outputStream;
         private static string webPartPrefix;
@@ -129,6 +130,14 @@ namespace SPO_WebPartUploader
             site = clientContext.Site;
             clientContext.Load(site);
             clientContext.ExecuteQuery();
+            siteFullUrl = site.Url;
+            siteRelativeUrl = site.ServerRelativeUrl;
+            //Ensure all URLs end with "/"
+            siteFullUrl += "/";
+            if (!siteRelativeUrl.EndsWith("/"))
+            {
+                siteRelativeUrl += "/";
+            }
             rootWeb = site.RootWeb;
             clientContext.Load(rootWeb);
             clientContext.ExecuteQuery();
