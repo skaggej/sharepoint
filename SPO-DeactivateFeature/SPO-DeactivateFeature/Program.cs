@@ -27,8 +27,8 @@ namespace SPO_DeactivateFeature
         static void Main(string[] args)
         {
             ConnectToSite();
-            //Console.WriteLine("Deactivating 'Minimal Download Strategy'\n");
-            //DeactivateFeature(rootWeb, spFeatureWebMinimalDownloadStrategy);
+            Console.WriteLine("Deactivating 'Minimal Download Strategy'\n");
+            DeactivateFeatureWeb(rootWeb, new Guid(spFeatureWebMinimalDownloadStrategy));
             Console.WriteLine("Deactivating 'Mobile Browser View' feature...\n");
             DeactivateFeatureWeb(rootWeb, new Guid(spFeatureWebMobileBrowserView));
             Console.WriteLine("Done! Press enter to exit...");
