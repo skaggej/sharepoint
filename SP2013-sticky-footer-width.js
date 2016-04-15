@@ -4,7 +4,7 @@ function setFooterWidth() {
 	//Retrieve the left margin for the quicklaunch
 	var leftMargin = $("#contentBox").css("margin-left").replace("px", "");
 	if(parseInt(tableWidth)+parseInt(leftMargin) > parseInt($("body").width())) {
-		var newSize = tableWidth + parseInt(leftMargin);
+		var newSize = parseInt(tableWidth) + parseInt(leftMargin);
 		$("#customFooter").width(newSize);
 	}		
 }
